@@ -1,7 +1,9 @@
-fastapi
+fastapi==0.85.1
 uvicorn
 langchain
 langchain-openai
+langchain_community
+pysqlite3-binary
 openai
 python-dotenv
 chromadb
