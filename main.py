@@ -41,7 +41,7 @@ def ask_question(query: str) -> str:
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://green-river-0e62da800.5.azurestaticapps.net"],
+    allow_origins=["https://white-island-0a9e64a00.5.azurestaticapps.net"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -51,12 +51,3 @@ app.add_middleware(
 async def run_llm(request_data: RequestData):
     answer, title, url, content = ask_question(request_data.text)
     return LLMResponse(text=answer, title=title, url=url, content=content)
-
-# if __name__ == "__main__":
-#     uvicorn.run(
-#         "my_fastapi_app:app",
-#         host="0.0.0.0",
-#         port=443,
-#         ssl_keyfile="/path/to/your/keyfile.pem",
-#         ssl_certfile="/path/to/your/certfile.pem"
-#     )
