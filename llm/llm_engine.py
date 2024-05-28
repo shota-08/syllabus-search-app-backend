@@ -1,10 +1,16 @@
+import os
+import openai
+
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 load_dotenv()  # read local .env file
 
+openai_api_key = os.environ["OPENAI_API_KEY"]
+openai.api_key = openai_api_key
+
 # LLMモデルの設定
-llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+llm = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
 
 def get_llm_summary(text):
     prompt_template = """
