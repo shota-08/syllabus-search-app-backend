@@ -43,8 +43,13 @@ class LLMResponse(BaseModel):
     content: str
 
 def ask_question(query: str) -> str:
+    print(embedding)
+    print("=====")
+    print(db)
     logger.info(f"Received query: {query}")
     docs = db.similarity_search(query, k=2)
+    print("=====")
+    print(docs)
     logger.info(f"Documents retrieved: {docs}")
     answer_meta = docs[0].metadata
     answer_title = answer_meta['title']
@@ -65,5 +70,7 @@ app.add_middleware(
 
 @app.post("/send")
 async def run_llm(request_data: RequestData):
+    print(request_data)
+    print("=====")
     answer, title, url, content = ask_question(request_data.text)
     return LLMResponse(text=answer, title=title, url=url, content=content)
