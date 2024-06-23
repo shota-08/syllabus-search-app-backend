@@ -1,3 +1,4 @@
+import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -7,6 +8,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from llm import llm_engine
+
+__import__("pysqlite3")
+sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 
 # 初期化
 embedding = OpenAIEmbeddings(model= "text-embedding-3-small")
@@ -55,7 +59,7 @@ def ask_question(query: str, db) -> str:
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
