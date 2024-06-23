@@ -1,8 +1,8 @@
-fastapi==0.85.1
+fastapi
 uvicorn
 langchain
 langchain-openai
-langchain_community
+langchain-chroma
 pysqlite3-binary
 openai
 python-dotenv

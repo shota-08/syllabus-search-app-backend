@@ -4,13 +4,14 @@ import openai
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
-load_dotenv()  # read local .env file
+load_dotenv()
 
 openai_api_key = os.environ["OPENAI_API_KEY"]
 openai.api_key = openai_api_key
 
 # LLMモデルの設定
-llm = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
+llm_3 = ChatOpenAI(model="gpt-3.5-turbo-0125", temperature=0)
+llm_4 = ChatOpenAI(model="gpt-4o", temperature=0)
 
 def get_llm_summary(text):
     prompt_template = """
@@ -29,7 +30,7 @@ def get_llm_summary(text):
     {text}
     """
     prompt = PromptTemplate(template=prompt_template, input_variables=["text"])
-    chain = prompt | llm
+    chain = prompt | llm_4
     answer = chain.invoke({"text": text})
     return answer.content
 
@@ -66,6 +67,6 @@ def get_llm_answer(query, title, text):
         input_variables = ["template"]
     )
     query_with_text = pass_text(query, title, text)
-    chain = prompt | llm
+    chain = prompt | llm_3
     answer = chain.invoke({"template": query_with_text})
     return answer.content
