@@ -1,4 +1,7 @@
+import os
 import sys
+import openai
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -11,6 +14,9 @@ from llm import llm_engine
 
 __import__("pysqlite3")
 sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
+
+openai_api_key = os.environ["OPENAI_API_KEY"]
+openai.api_key = openai_api_key
 
 # 初期化
 embedding = OpenAIEmbeddings(model= "text-embedding-3-small")
