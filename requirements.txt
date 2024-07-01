@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+langchain
+langchain-openai
+langchain_community
+pysqlite3-binary
+openai
+python-dotenv
+chromadb
+pandas
+langchain-chroma
